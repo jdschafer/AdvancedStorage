@@ -1,3 +1,11 @@
+/*@author       Cathy Bareiss
+ *@id           jdschafer
+ *@course       CSIS 252
+ *@assignment   Advanced Storage Lab 5
+ *@related      Person.java
+ *@included     N/A
+ */
+
 public interface IOInterface {
     // constructor will be sent an array of strings
     // if the array is empty, all input should be read from System.in and all
@@ -8,7 +16,7 @@ public interface IOInterface {
     //    file and the second string is the name of the output file
     
     //DON'T USE
-    int getInt(int port); // if reading from a file, ignore port else specifies
+    int getInt(int port);// if reading from a file, ignore port else specifies
                           // the port to read from (if needed)
     int getInt();       // reads one integer from input
                         // this could be an int showing which port was pressed
@@ -17,7 +25,7 @@ public interface IOInterface {
     String getString();    // reads one string from input (until space)
     String getStringLn();  // reads one string (until end of line) from input
     
-    // all other input will be done via the form of a String and then converted
+    //all other input will be done via the form of a String and then converted
     
     void writeString(String str); // this outputs the string without <cr>
     void writeStringLn(String str); // this outputs the string with <cr>
