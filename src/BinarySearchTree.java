@@ -19,14 +19,17 @@ public class BinarySearchTree implements BSTInterface {
         root = null;
     }
     
+    //Returns true if the tree is empty,  otherwise returns false
     public boolean isEmpty() {
         return (root == null);
     }
-
+    
+    //Returns the number of nodes in the tree
     public int size() {
         return recSize(root);
     }
-
+    
+    //Returns the number of nodes in the tree
     private int recSize(BSTNode tree) {
         if(tree == null) 
             return 0;
@@ -34,10 +37,12 @@ public class BinarySearchTree implements BSTInterface {
             return recSize(tree.getLeft()) + recSize(tree.getRight()) + 1;
     }
     
+    //Returns true if the target element is in the tree
     public boolean contains(Comparable element) {
         return recContains(element, root);
     }
     
+    //Returns true if the target element is in the tree
     private boolean recContains(Comparable element, BSTNode tree) {
         if (tree == null)
             return false;
@@ -49,11 +54,15 @@ public class BinarySearchTree implements BSTInterface {
             return true;
     }
 
+    //Returns true if the target element was in the list and was removed
+    //Otherwise returns false
     public boolean remove(Comparable element) {
         root = recRemove(element,root);
         return found;
     }
     
+    //Returns true if the target element was in the list and was removed
+    //Otherwise returns false
     private BSTNode recRemove(Comparable element, BSTNode tree) {
         if (tree == null)
             found = false;
@@ -69,6 +78,7 @@ public class BinarySearchTree implements BSTInterface {
         return tree;
     }
     
+    //Returns the node to replace the removed one
     private BSTNode removeNode(BSTNode tree) {
         Comparable data;
         
@@ -85,16 +95,19 @@ public class BinarySearchTree implements BSTInterface {
         }
     }
     
+    //Returns the target node's predecessor
     private Comparable getPredecessor(BSTNode tree) {
         while(tree.getRight() != null)
             tree = tree.getRight();
         return tree.getInfo();
     }
 
+    //Returns the target element within the tree
     public Comparable get(Comparable element) {
         return recGet(element, root);
     }
     
+    //Returns the target element within the tree
     private Comparable recGet(Comparable element, BSTNode tree) {
         if (tree == null)
             return null;
@@ -105,11 +118,13 @@ public class BinarySearchTree implements BSTInterface {
         else 
             return tree.getInfo();
     }
-
+    
+    //Adds the target element to the Binary Search Tree
     public void add(Comparable element) {
         root = recAdd(element, root);
     }
     
+    //Adds the target element to the Binary Search Tree
     private BSTNode recAdd(Comparable element, BSTNode tree) {
         if(tree == null) 
             tree = new BSTNode(element);
@@ -119,7 +134,9 @@ public class BinarySearchTree implements BSTInterface {
             tree.setRight(recAdd(element, tree.getRight()));
         return tree;
     }
-
+    
+    //Initializes current position for an iteration through this BST
+    //in orderType order.  Returns current number of nodes in the BST
     public int reset(int orderType) {
         int numNodes = size();
         if(orderType == INORDER)
@@ -141,6 +158,7 @@ public class BinarySearchTree implements BSTInterface {
         return numNodes;
     }
     
+    //Initializes inOrderQueue with tree elements in inOrder order
     private void inOrder(BSTNode tree) {
         if(tree != null) 
         {
@@ -150,6 +168,7 @@ public class BinarySearchTree implements BSTInterface {
         }
     }
     
+    //Initializes preOrderQueue with tree elements in preOrder order
     private void preOrder(BSTNode tree) {
         if(tree != null) 
         {
@@ -159,6 +178,7 @@ public class BinarySearchTree implements BSTInterface {
         }
     }
     
+    //Initializes postOrderQueue with tree elements in postOrder order
     private void postOrder(BSTNode tree) {
         if(tree != null) 
         {
@@ -168,6 +188,8 @@ public class BinarySearchTree implements BSTInterface {
         }
     }
 
+    //Returns the element at the current position on this BST for orderType 
+    //and advances the value of the current position based on the orderType
     public Comparable getNext(int orderType) {
         if(orderType == INORDER)
             return (Comparable)inOrderQueue.deQueue();

@@ -24,10 +24,12 @@ public class CRefUnsortedList implements UnsortedListInterface {
         currentPos = null;
     }
     
+    //Returns number of elements in the list
     public int size() {
         return numElements;
     }
     
+    //Finds the requested element and then sets location to its location
     protected void find(Object target) {
         boolean moreToSearch;
         location = list;
@@ -45,12 +47,14 @@ public class CRefUnsortedList implements UnsortedListInterface {
             moreToSearch = (location != list);
         }
     }
-
+    
+    //Returns if the list contains the target element
     public boolean contains(Object element) {
         find(element);
         return found;
     }
     
+    //Returns a string of the contents of the list
     public String toString() {
         String listString = "List:\n";
         if(list != null)
@@ -66,7 +70,9 @@ public class CRefUnsortedList implements UnsortedListInterface {
         }
         return listString;
     }
-
+    
+    //Removes the target element from the list and returns true
+    //Otherwise returns false
     public boolean remove(Object element) {
         find(element);
         if(found)
@@ -81,7 +87,8 @@ public class CRefUnsortedList implements UnsortedListInterface {
         }
         return found;
     }
-
+    
+    //Returns the requested object
     public Object get(Object element) {
         find(element);
         if(found)
@@ -89,19 +96,22 @@ public class CRefUnsortedList implements UnsortedListInterface {
         else
             return null;
     }
-
+    
+    //Resets the location in the list to start a new iteration
     public void reset() {
         if(list != null)
             currentPos = list.getLink();
     }
-
+    
+    //Returns the next object in the list
     public Object getNext() {
         Object next = currentPos.getInfo();
         currentPos = currentPos.getLink();
         
         return next;
     }
-
+    
+    //Adds the new element to the list
     public void add(Object element) {
         LLObjectNode newNode = new LLObjectNode(element);
         if(list == null)
