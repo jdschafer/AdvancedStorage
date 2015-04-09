@@ -119,11 +119,13 @@ public class CRefUnsortedList implements UnsortedListInterface {
         LLObjectNode newNode = new LLObjectNode(element);
         if(list == null)
         {
+            compares++;
             list = newNode;
             newNode.setLink(list);
         }
         else
         {
+            compares++;
             newNode.setLink(list.getLink());
             list.setLink(newNode);
             list = newNode;

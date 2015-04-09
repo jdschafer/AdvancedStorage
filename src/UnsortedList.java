@@ -18,6 +18,7 @@ public class UnsortedList extends List {
     
     //Adds the object into the list and increments the number of elements
     public void add(Object element) {
+        compares++;
         if(numElements == list.length)
             enlarge();
         list[numElements] = element;
