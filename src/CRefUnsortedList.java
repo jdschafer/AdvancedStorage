@@ -11,6 +11,7 @@ public class CRefUnsortedList implements UnsortedListInterface {
     protected LLObjectNode list;
     protected int numElements;
     protected boolean found;
+    protected int compares;
     protected LLObjectNode location;
     protected LLObjectNode previous;
     protected LLObjectNode currentPos;
@@ -22,6 +23,7 @@ public class CRefUnsortedList implements UnsortedListInterface {
         location = null;
         previous = null;
         currentPos = null;
+        compares = 0;
     }
     
     //Returns number of elements in the list
@@ -40,6 +42,7 @@ public class CRefUnsortedList implements UnsortedListInterface {
         {
             previous = location;
             location = location.getLink();
+            compares++;
             
             if(location.getInfo().equals(target))
                 found = true;

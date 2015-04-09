@@ -10,6 +10,7 @@ public class BinarySearchTree implements BSTInterface {
     
     protected BSTNode root;
     boolean found;
+    int compares;
     
     protected Queue inOrderQueue;
     protected Queue preOrderQueue;
@@ -17,6 +18,7 @@ public class BinarySearchTree implements BSTInterface {
     
     public BinarySearchTree() {
         root = null;
+        compares = 0;
     }
     
     //Returns true if the tree is empty,  otherwise returns false
@@ -126,12 +128,18 @@ public class BinarySearchTree implements BSTInterface {
     
     //Adds the target element to the Binary Search Tree
     private BSTNode recAdd(Comparable element, BSTNode tree) {
-        if(tree == null) 
+        if(tree == null) {
+            compares++;
             tree = new BSTNode(element);
-        else if(element.compareTo(tree.getInfo()) <= 0)
+        }
+        else if(element.compareTo(tree.getInfo()) <= 0) {
+            compares++;
             tree.setLeft(recAdd(element, tree.getLeft()));
-        else
+        }
+        else {
+            compares++;
             tree.setRight(recAdd(element, tree.getRight()));
+        }
         return tree;
     }
     
